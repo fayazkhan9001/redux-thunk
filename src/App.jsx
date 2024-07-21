@@ -8,13 +8,15 @@ import {
   Router,
 } from "react-router-dom";
 import Product from "./Product";
+import About from "./About";
 import SingleProduct from "./SingleProduct";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Product />}>
+    <Route>
       <Route path="/product" element={<Product />} />
-      <Route path="/singleproduct" element={<SingleProduct />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/singleproduct/:id" element={<SingleProduct />} />
     </Route>
   )
 );
