@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { getSingleProductById } from "./redux/thunk/productAction";
+import { useSelector, useDispatch } from "react-redux";
 
 function SingleProduct() {
-  const [data, getData] = useState({});
+  const dispatch = useDispatch();
   const { id } = useParams();
-  console.log("user is...", id);
+  const { data } = useSelector((state) => state.singleProductReducer);
 
   useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${id}`)
-      .then((res) => getData(res.data));
-    console.log(data);
+    dispatch(getSingleProductById(id));
   }, []);
 
   return (
     <div>
-      <div
-        onClick={() => getSingleProduct(product.id)}
-        className="max-w-full m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-      >
+      <div className="max-w-md mx-auto m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img className="rounded-t-lg" src={data.image} alt="" />
         </a>
@@ -29,7 +24,7 @@ function SingleProduct() {
               {data.title}
             </h5>
           </a>
-
+          <p className="mb-2  text-gray-900 dark:text-white">{data.category}</p>
           <p className="mb-2  text-gray-900 dark:text-white">
             {data.description}
           </p>

@@ -13,3 +13,17 @@ export const productSlice = createSlice({
 });
 
 export const { fetchProducts } = productSlice.actions;
+
+export const singleProductSlice = createSlice({
+  name: "product",
+  initialState: {
+    data: {},
+  },
+  reducers: {
+    fetchSingleProduct: (state, action) => {
+      state.data = action.payload;
+    },
+  },
+});
+
+export const { fetchSingleProduct } = singleProductSlice.actions;

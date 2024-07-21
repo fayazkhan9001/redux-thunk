@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Product() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state);
+  const { data } = useSelector((state) => state.productReducer);
   useEffect(() => {
     dispatch(getProducts());
   }, []);
@@ -16,8 +16,9 @@ function Product() {
   };
   return (
     <div className="flex flex-wrap justify-center">
-      {data.map((product, idx) => (
+      {data?.map((product, idx) => (
         <div
+          key={idx}
           onClick={() => getSingleProduct(product.id)}
           className="max-w-xs m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
         >
