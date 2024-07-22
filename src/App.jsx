@@ -5,18 +5,18 @@ import {
   createRoutesFromElements,
   RouterProvider,
   Route,
-  Router,
 } from "react-router-dom";
-import Product from "./Product";
-import About from "./About";
-import SingleProduct from "./SingleProduct";
+import Products from "./pages/Products";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import RootLayout from "./components/RootLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
-      <Route path="/product" element={<Product />} />
+    <Route path="/" element={<RootLayout />}>
+      <Route path="/products" element={<Products />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/about" element={<About />} />
-      <Route path="/singleproduct/:id" element={<SingleProduct />} />
     </Route>
   )
 );
