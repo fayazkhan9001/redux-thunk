@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProduct } from "../redux/feature/productReducer/productSlice";
+import StatusCode from "../utility/StatusCode";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -12,10 +13,10 @@ function Products() {
     dispatch(getProduct());
   }, []);
 
-  if (status == "loading") {
+  if (status === StatusCode.LOADING) {
     return <p>loading...</p>;
   }
-  if (status == "error") {
+  if (status === StatusCode.ERROR) {
     return <p>OOPs! something went wrong. Please try again later</p>;
   }
   return (
